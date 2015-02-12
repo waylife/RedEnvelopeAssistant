@@ -86,6 +86,7 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 		initView(rootView);
 		return rootView;
 	}
+	
 
 	void initView(View view) {
 		// find views
@@ -141,11 +142,11 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 
 	void autoClean() {
 		boolean isRoot = RootTools.isRoot();
-		String path = "/data/data/" + ALIPAY_PACKAGENAME + "/shared_prefs";
+//		String path = "/data/data/" + ALIPAY_PACKAGENAME + "/shared_prefs";
 		if (RootTools.isAccessGiven()) {
 			Message msg = mHandler.obtainMessage(MSG_FILE_DELETE_DELAY);
 			msg.what = MSG_FILE_DELETE_DELAY;
-			msg.obj = path;
+			msg.obj = ALIPAY_PACKAGENAME;
 			mHandler.sendMessage(msg);
 			// if (RootTools.deleteFileOrDirectory(path, true)) {
 			// } else {
@@ -157,13 +158,14 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 		}
 	}
 
-	void deleteFile(final String path) {
-		if (path == null)
+	void deleteFile(final String packageName) {
+		if (packageName == null)
 			return;
 		// delete file
 		try {
 			Shell shellDeleteFile = RootTools.getShell(true);
-			CommandCapture cmdDeleteFile = new CommandCapture(0, "rm -rf  " + path) {
+			//"rm -rf  " + path
+			CommandCapture cmdDeleteFile = new CommandCapture(0, "pm clear " + packageName) {
 				@Override
 				public void commandOutput(int id, String line) {
 					super.commandOutput(id, line);
@@ -196,6 +198,7 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 		Intent i = new Intent();
 		i.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
 		i.setData(u);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		i.setComponent(new ComponentName("com.android.settings", "com.android.settings.applications.InstalledAppDetails"));
 		startActivity(i);
 	}

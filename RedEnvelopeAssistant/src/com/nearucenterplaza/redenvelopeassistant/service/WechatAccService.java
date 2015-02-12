@@ -135,7 +135,7 @@ public class WechatAccService extends AccessibilityService {
 			XLog.i(TAG, "showDialog:" + info.canOpenPopup());
 			XLog.e(TAG, "Text:" + info.getText());
 			XLog.i(TAG, "windowId:" + info.getWindowId());
-			if("清除数据".equals(info.getText()==null?"":info.getText().toString().trim())){
+			if("Clear data".equals(info.getText()==null?"":info.getText().toString().trim())){
 				XLog.e(TAG, info.getViewIdResourceName()==null?"null":"not null");
 //				info.performAction(GLOBAL_ACTION_BACK);
 				info.performAction(AccessibilityNodeInfo.ACTION_CLICK);

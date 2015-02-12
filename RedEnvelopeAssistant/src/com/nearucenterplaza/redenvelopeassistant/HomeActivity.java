@@ -1,25 +1,16 @@
 package com.nearucenterplaza.redenvelopeassistant;
 
-import com.nearucenterplaza.redenvelopeassistant.NavigationDrawerFragment.NavigationDrawerCallbacks;
+import com.nearucenterplaza.redenvelopeassistant.fragment.AboutFragment;
 import com.nearucenterplaza.redenvelopeassistant.fragment.AlipayFragment;
+import com.nearucenterplaza.redenvelopeassistant.fragment.WeChatFragment;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 public class HomeActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -50,7 +41,17 @@ public class HomeActivity extends ActionBarActivity implements NavigationDrawerF
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, AlipayFragment.newInstance(position + 1)).commit();
+		switch (position) {
+		case 0:
+			fragmentManager.beginTransaction().replace(R.id.container, AlipayFragment.newInstance(position + 1)).commit();
+			break;
+		case 1:
+			fragmentManager.beginTransaction().replace(R.id.container, WeChatFragment.newInstance(position + 1)).commit();
+			break;
+		default:
+			fragmentManager.beginTransaction().replace(R.id.container, AboutFragment.newInstance(position + 1)).commit();
+			break;
+		}
 	}
 
 	public void onSectionAttached(int number) {

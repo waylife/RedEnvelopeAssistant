@@ -10,5 +10,5 @@
     -->
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="alipay_gap">10dp</dimen>
-
+	<dimen name="wechat_gap">10dp</dimen>
 </resources>

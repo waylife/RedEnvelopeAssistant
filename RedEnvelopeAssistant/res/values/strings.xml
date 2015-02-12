@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">红包助手</string>
-    <string name="title_section1">支付宝</string>
+    <string name="title_section1">支付宝红包</string>
     <string name="title_section2">微信红包</string>
     <string name="title_section3">关于</string>
     <string name="navigation_drawer_open">打开抽屉</string>

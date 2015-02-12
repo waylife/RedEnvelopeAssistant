@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.updsssggg.redenvelopeassistant.HomeActivity$PlaceholderFragment" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="红包助手"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/alipay_root_state_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:text="1.支付宝红包 （每次抢到红包后,使用本软件清除应用数据后，再登录支付宝即可继续抢红包）\n2.微信红包（请打开要抢红包的群页面，应用会自动无人值守抢红包，请保持屏幕常亮）"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:gravity="center"
+            android:text="使用本软件带来的任何风险问题，本人以及团队不负任何责任" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:gravity="center"
+            android:text="By RxRead" />
+    </LinearLayout>
+
+</RelativeLayout>

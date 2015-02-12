@@ -2,6 +2,10 @@
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFeedbackType="feedbackSpoken"
+    android:accessibilityFlags="flagDefault"
+    android:canRequestEnhancedWebAccessibility="true"
+    android:canRequestTouchExplorationMode="true"
     android:canRetrieveWindowContent="true"
-    android:notificationTimeout="100" />
-<!--     typeAllMask typeViewClicked typeViewFocused -->
+    android:notificationTimeout="10"
+    android:settingsActivity="com.nearucenterplaza.redenvelopeassistant.HomeActivity" />
+<!-- typeAllMask typeViewClicked typeViewFocused -->

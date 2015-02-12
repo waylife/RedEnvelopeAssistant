@@ -41,7 +41,7 @@ public class WeChatFragment extends Fragment implements OnClickListener  {
 	TextView mServiceStateTv;
 	TextView mOpenWechatTv;
 
-	private final static String WECHAT_PACKAGENAME = "com.tencent.mm";
+	public  final static String WECHAT_PACKAGENAME = "com.tencent.mm";
 
 
 	@Override

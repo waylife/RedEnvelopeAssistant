@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.updsssggg.redenvelopeassistant.HomeActivity$PlaceholderFragment" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="支付宝红包助手"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/alipay_root_state_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:text="root状态"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/alipay_auto_clean_data_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:text="自动清除数据"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/alipay_self_clean_data_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:text="手动清除数据"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/alipay_openapp_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:text="打开支付宝"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/alipay_onekey_clean_data_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:text="一键清除数据"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

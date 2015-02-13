@@ -43,10 +43,10 @@ Below is a chinese instruction:
  
 
 ##技术实现
-###支付宝
+###支付宝红包助手
 1. 直接跳转到应用清除页面
 2. root权限使用"am clear XXXX"命令清除应用数据
-###微信
+###微信红包助手
 使用AccessibilityService对程序进行模拟点击
 目前如何去判断这个页面中某一个红包已经抢过是关键问题，暂时还没有解决
 
@@ -54,4 +54,8 @@ Below is a chinese instruction:
 1. 代码结构优化
 2. UI权限以及包监听优化 
 3. 等 
+
+##后续
+1. 修复bug
+2. 现在可检测到通知栏的红包消息，但是如何去模拟点击通知栏？
 

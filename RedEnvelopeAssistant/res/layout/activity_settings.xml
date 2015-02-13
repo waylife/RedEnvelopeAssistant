@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.updsssggg.redenvelopeassistant.HomeActivity$PlaceholderFragment" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="红包助手"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/settings_auto_click_on_chat_cb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="微信聊天页面自动抢红包" />
+
+        <TextView
+            android:id="@+id/alipay_root_state_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="以上功能存在bug，不建议开启\n如果微信在后台运行，希望在点击通知栏红包提醒后进入聊天页面时自动抢红包，可开启，抢到后，请关闭此功能；后台运行时才打开此功能"
+            android:textSize="15sp" />
+        
+          <CheckBox
+            android:id="@+id/settings_auto_back_when_get_lucky_money_cb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="抢红包后自动返回上一页" />
+          
+          <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="以上功能存在bug，可能会导致退出微信页面，需要手动再进入，但推荐使用，加快抢红包速度"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</RelativeLayout>

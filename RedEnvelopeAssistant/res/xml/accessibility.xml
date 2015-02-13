@@ -7,5 +7,5 @@
     android:canRequestTouchExplorationMode="true"
     android:canRetrieveWindowContent="true"
     android:notificationTimeout="10"
-    android:settingsActivity="com.nearucenterplaza.redenvelopeassistant.HomeActivity" />
+    android:settingsActivity="com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity" />
 <!-- typeAllMask typeViewClicked typeViewFocused -->

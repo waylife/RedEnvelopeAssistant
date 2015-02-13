@@ -1,10 +1,12 @@
-package com.nearucenterplaza.redenvelopeassistant.fragment;
+package com.nearucenterplaza.redenvelopeassistant.ui.fragmant;
 
-import com.nearucenterplaza.redenvelopeassistant.HomeActivity;
 import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
+import com.nearucenterplaza.redenvelopeassistant.ui.activity.SettingActivity;
 import com.nearucenterplaza.redenvelopeassistant.utils.AccessibilityServiceHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.PackageUtils;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -67,6 +69,7 @@ public class WeChatFragment extends Fragment implements OnClickListener  {
 		mServiceStateTv.setOnClickListener(this);
 		mOneKeyCleanTv.setOnClickListener(this);
 		mOpenWechatTv.setOnClickListener(this);
+		view.findViewById(R.id.wechat_setting_tv).setOnClickListener(this);
 
 		// set values
 		refreshLayout();
@@ -100,6 +103,9 @@ public class WeChatFragment extends Fragment implements OnClickListener  {
 			break;
 		case R.id.wechat_openapp_tv:
 			PackageUtils.openApp(getActivity(), WECHAT_PACKAGENAME);
+			break;
+		case R.id.wechat_setting_tv:
+			SettingActivity.actionTo(getActivity());
 			break;
 		}
 	}

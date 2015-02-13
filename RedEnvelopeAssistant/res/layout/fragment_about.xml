@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/alipay_gap"
-            android:text="1.支付宝红包 （每次抢到红包后,使用本软件清除应用数据后，再登录支付宝即可继续抢红包）\n2.微信红包（请打开要抢红包的群页面，应用会自动无人值守抢红包，请保持屏幕常亮）"
+            android:text="此应用完全免费\n1.支付宝红包 （每次抢到红包后,使用本软件清除应用数据后，再登录支付宝即可继续抢红包）\n2.微信红包（请打开要抢红包的群页面，应用会自动无人值守抢红包，请保持屏幕常亮）"
             android:textColor="@android:color/black"
             android:textSize="15sp" />
     </LinearLayout>
@@ -37,6 +37,14 @@
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/about_version_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/alipay_gap"
+            android:gravity="center"
+            android:text="版本：1.0.0" />
+
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/alipay_gap"
@@ -44,11 +52,14 @@
             android:text="使用本软件带来的任何风险问题，本人以及团队不负任何责任" />
 
         <TextView
+            android:id="@+id/about_go_github_tv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/alipay_gap"
+            android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="By RxRead" />
+            android:text="By RxRead"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </RelativeLayout>

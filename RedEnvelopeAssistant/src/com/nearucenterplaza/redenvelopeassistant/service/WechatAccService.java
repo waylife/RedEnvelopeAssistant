@@ -1,37 +1,39 @@
 package com.nearucenterplaza.redenvelopeassistant.service;
 
-import com.nearucenterplaza.redenvelopeassistant.fragment.RedEnvelopeApplication;
-import com.nearucenterplaza.redenvelopeassistant.fragment.WeChatFragment;
+import java.util.Iterator;
+import java.util.List;
+
+import com.nearucenterplaza.redenvelopeassistant.ui.RedEnvelopeApplication;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.WeChatFragment;
+import com.nearucenterplaza.redenvelopeassistant.service.core.Notifier;
 import com.nearucenterplaza.redenvelopeassistant.service.core.RedEnvelopeHelper;
+import com.nearucenterplaza.redenvelopeassistant.service.core.SettingHelper;
+import com.nearucenterplaza.redenvelopeassistant.service.core.ViewHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.ActivityHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
-import android.R.integer;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.TargetApi;
-import android.app.Service;
-import android.content.Intent;
-import android.content.res.Resources;
+import android.app.Notification;
 import android.os.Build;
-import android.os.IBinder;
-import android.provider.Settings;
-import android.speech.tts.TextToSpeech;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+import android.widget.RemoteViews;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class WechatAccService extends AccessibilityService {
 	// 0:unkown, 1:chat page, 2:open red envelope, 3, red envelope details
 	// private final int state=0;
 	private static final String TAG = "WechatAccService";
-	String[] PACKAGES = { "com.android.settings" };
-	boolean isOpened = false;
 
 	private long mLastGlobalBackTime = 0;
 	private long GLOBAL_BACK_TIME = 500;
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -45,7 +47,7 @@ public class WechatAccService extends AccessibilityService {
 		// accessibilityServiceInfo.packageNames = PACKAGES;
 		accessibilityServiceInfo.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
 		accessibilityServiceInfo.flags |= AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
-		accessibilityServiceInfo.packageNames = new String[] { WeChatFragment.WECHAT_PACKAGENAME };
+//		accessibilityServiceInfo.packageNames = new String[] { WeChatFragment.WECHAT_PACKAGENAME };
 		accessibilityServiceInfo.feedbackType = AccessibilityServiceInfo.FEEDBACK_ALL_MASK;
 		accessibilityServiceInfo.notificationTimeout = 10;
 		setServiceInfo(accessibilityServiceInfo);
@@ -54,14 +56,13 @@ public class WechatAccService extends AccessibilityService {
 		 * <meta-data android:name="android.accessibilityservice"
 		 * android:resource="@xml/accessibility" />
 		 */
+		Notifier.getInstance().notify("红包助手", "微信红包服务已启动", "微信红包服务已启动", Notifier.TYPE_WECHAT_SERVICE_RUNNING, false);
 	}
-
-	private int inner = 0;
-	private int outer = 0;
 
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
+		handleNotificationChange(event);
 		AccessibilityNodeInfo nodeInfo = event.getSource();
 		// 一直刷新，根据手机刷新频率
 		if (nodeInfo == null) {
@@ -75,7 +76,6 @@ public class WechatAccService extends AccessibilityService {
 			// event.getAction() + "resource name:" +
 			// nodeInfo.getViewIdResourceName());
 			nodeInfo.recycle();
-			inner++;
 		}
 
 		AccessibilityNodeInfo rowNode = getRootInActiveWindow();
@@ -84,34 +84,55 @@ public class WechatAccService extends AccessibilityService {
 			return;
 		}
 
-		outer++;
-
 		String currentActivityName = ActivityHelper.getTopActivityName(RedEnvelopeApplication.getInstance());
 		if ("com.tencent.mm.ui.LauncherUI".equals(currentActivityName)) {// 聊天以及主页
-			// com.tencent.mm.ui.chatting.ChattingUI，聊天
-			// com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI 红包
 			XLog.e(TAG, "Chat page");
-			handleChatPage(rowNode);
+			if (SettingHelper.getAutoClickOnChatPage()) {
+				handleChatPage(rowNode);
+			}
 		} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI".equals(currentActivityName)) {
 			XLog.e(TAG, "LuckyMoneyReceiveUI page");
 			handleLuckyMoneyReceivePage(rowNode);
 		} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI".equals(currentActivityName)) {// lucky
 																											// money
 																											// details
-
-			XLog.e(TAG, "LuckyMoneyDetailPage page" + inner + "-" + outer);
 			handleLuckyMoneyDetailPage(rowNode);
 		} else {
 			XLog.e(TAG, currentActivityName + " page");
 		}
+	}
 
+	public void log(String message) {
+		XLog.e("Xnotification", message);
+	}
+
+	/** handle notification notice */
+	@TargetApi(Build.VERSION_CODES.KITKAT)
+	public void handleNotificationChange(AccessibilityEvent event) {
+		XLog.e("Xnotification", "eventtype:" + event.getEventType());
+		if (event == null)
+			return;
+		// 通知栏服务
+		if (!(event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED)) {
+			return;
+		}
+		if (event.getParcelableData() instanceof Notification) {
+			Notification notification = (Notification) event.getParcelableData();
+			if(notification.tickerText!=null&&notification.tickerText.toString().contains(": [微信红包]")){
+				log("来红包啦");
+				performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS);
+			}
+		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void peformGlobalBack() {
+		if(!SettingHelper.getAutoBackWhenGetLuckMoney()){
+			return;
+		}
 		if (System.currentTimeMillis() - mLastGlobalBackTime >= GLOBAL_BACK_TIME) {
 			performGlobalAction(GLOBAL_ACTION_BACK);
-			mLastGlobalBackTime=System.currentTimeMillis();
+			mLastGlobalBackTime = System.currentTimeMillis();
 		} else {
 			// do nothing
 		}
@@ -128,16 +149,16 @@ public class WechatAccService extends AccessibilityService {
 		if (node == null)
 			return;
 		AccessibilityNodeInfo nodeDetail = RedEnvelopeHelper.getWechatRedEnvelopeOpenDetailNode(node);
-		if(nodeDetail!=null){//已经打开
+		if (nodeDetail != null) {// 已经打开
 			peformGlobalBack();
-		}else{
+		} else {
 			AccessibilityNodeInfo nodeOpen = RedEnvelopeHelper.getWechatRedEnvelopeOpenNode(node);
 			if (nodeOpen != null) {
 				nodeOpen.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 				nodeOpen.recycle();
-			} else {//loading data
-				
-			}	
+			} else {// loading data
+
+			}
 		}
 	}
 
@@ -150,8 +171,6 @@ public class WechatAccService extends AccessibilityService {
 
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	public boolean recycleChatPage(AccessibilityNodeInfo info) {
-		if (isOpened)
-			return false;
 		if (info.getChildCount() == 0) {
 			// XLog.i(TAG, "child widget:" + info.getClassName() +
 			// " showDialog:" + info.canOpenPopup() + " text:" + info.getText()
@@ -161,7 +180,6 @@ public class WechatAccService extends AccessibilityService {
 		} else {
 			if (RedEnvelopeHelper.isWechatRedEnvelopeNode(info)) {
 				info.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-				isOpened = true;
 				info.recycle();
 				return true;
 			}
@@ -182,7 +200,11 @@ public class WechatAccService extends AccessibilityService {
 
 	@Override
 	public void onInterrupt() {
+	}
 
+	public void onDestroy() {
+		super.onDestroy();
+		Notifier.getInstance().cancelByType(Notifier.TYPE_WECHAT_SERVICE_RUNNING);
 	}
 
 }

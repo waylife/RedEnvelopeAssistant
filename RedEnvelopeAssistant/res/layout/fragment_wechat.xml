@@ -34,7 +34,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical" >
-
+		<TextView
+            android:id="@+id/wechat_setting_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/wechat_gap"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="@android:color/white" />
+        
         <TextView
             android:id="@+id/wechat_openapp_tv"
             android:layout_width="fill_parent"

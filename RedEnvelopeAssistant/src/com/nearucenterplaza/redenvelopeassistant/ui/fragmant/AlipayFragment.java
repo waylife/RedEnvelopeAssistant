@@ -1,11 +1,11 @@
-package com.nearucenterplaza.redenvelopeassistant.fragment;
+package com.nearucenterplaza.redenvelopeassistant.ui.fragmant;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import com.nearucenterplaza.redenvelopeassistant.HomeActivity;
 import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
 import com.nearucenterplaza.redenvelopeassistant.utils.PackageUtils;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 import com.nearucenterplaza.redenvelopeassistant.utils.rootbox.RootTools;

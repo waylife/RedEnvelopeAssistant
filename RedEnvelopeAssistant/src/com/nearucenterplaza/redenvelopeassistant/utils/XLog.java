@@ -20,6 +20,7 @@ public class XLog {
 		ALLOW_TAGS.add(defaultTag);
 		ALLOW_TAGS.add("alipay".toLowerCase());
 		ALLOW_TAGS.add("WechatAccService".toLowerCase());
+		ALLOW_TAGS.add("Xnotification".toLowerCase());
 	}
 
 	/**判断tag是否是被允许的*/

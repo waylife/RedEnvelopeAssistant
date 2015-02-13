@@ -1,5 +1,12 @@
-package com.nearucenterplaza.redenvelopeassistant;
+package com.nearucenterplaza.redenvelopeassistant.ui.fragmant;
 
+
+import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.R.drawable;
+import com.nearucenterplaza.redenvelopeassistant.R.id;
+import com.nearucenterplaza.redenvelopeassistant.R.layout;
+import com.nearucenterplaza.redenvelopeassistant.R.menu;
+import com.nearucenterplaza.redenvelopeassistant.R.string;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -258,7 +265,7 @@ public class NavigationDrawerFragment extends Fragment {
 		}
 
 		if (item.getItemId() == R.id.action_example) {
-			Toast.makeText(getActivity(), "Beta版限时免费中...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "本软件完全免费，不用注册\n不抢红包时，请完全关闭本软件相关的所有服务\n", Toast.LENGTH_SHORT).show();
 			return true;
 		}
 

@@ -1,4 +1,4 @@
-package com.nearucenterplaza.redenvelopeassistant.fragment;
+package com.nearucenterplaza.redenvelopeassistant.ui;
 
 import android.app.Application;
 

@@ -1,8 +1,15 @@
-package com.nearucenterplaza.redenvelopeassistant;
+package com.nearucenterplaza.redenvelopeassistant.ui.activity;
 
-import com.nearucenterplaza.redenvelopeassistant.fragment.AboutFragment;
-import com.nearucenterplaza.redenvelopeassistant.fragment.AlipayFragment;
-import com.nearucenterplaza.redenvelopeassistant.fragment.WeChatFragment;
+import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.R.id;
+import com.nearucenterplaza.redenvelopeassistant.R.layout;
+import com.nearucenterplaza.redenvelopeassistant.R.menu;
+import com.nearucenterplaza.redenvelopeassistant.R.string;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.AboutFragment;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.AlipayFragment;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.NavigationDrawerFragment;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.WeChatFragment;
+import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.NavigationDrawerFragment.NavigationDrawerCallbacks;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -95,6 +102,7 @@ public class HomeActivity extends ActionBarActivity implements NavigationDrawerF
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			SettingActivity.actionTo(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

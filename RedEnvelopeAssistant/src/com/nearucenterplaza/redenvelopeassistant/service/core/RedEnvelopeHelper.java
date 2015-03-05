@@ -1,17 +1,36 @@
 package com.nearucenterplaza.redenvelopeassistant.service.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
 import android.R.integer;
 import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.os.Build;
+import android.util.Log;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 public class RedEnvelopeHelper {
 	
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static void openNotify(AccessibilityEvent event) {
+        if( !(event.getParcelableData() instanceof Notification)) {
+            return;
+        }
+        Notification notification = (Notification) event.getParcelableData();
+        PendingIntent pendingIntent = notification.contentIntent;
+        try {
+            pendingIntent.send();
+        } catch (PendingIntent.CanceledException e) {
+            e.printStackTrace();
+        }
+    }
 	
+    /**获得红包打开节点*/
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenNode(AccessibilityNodeInfo info) {
 		if (info == null)
@@ -69,7 +88,22 @@ public class RedEnvelopeHelper {
 		return false;
 	}
 	
-	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+	public static  AccessibilityNodeInfo getLatesWechatRedEnvelopeNode(AccessibilityNodeInfo info) {
+		if (info == null)
+			return null;
+	    List<AccessibilityNodeInfo> resultList = info.findAccessibilityNodeInfosByText("领取红包");
+        if(resultList!=null&&resultList.isEmpty()) {
+            for(int i = resultList.size() - 1; i >= 0; i --) {
+                AccessibilityNodeInfo parent = resultList.get(i).getParent();
+                if(parent != null) {
+                    return parent;
+                }
+            }
+        }
+        return null;
+	}
+
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static  boolean isWechatRedEnvelopeNode(AccessibilityNodeInfo info) {
 		if (info == null)

@@ -6,6 +6,9 @@ Below is a chinese instruction:
 #红包助手
 ---
 完全免费开源的抢红包软件  
+欢迎各路大神完善改进
+QQ交流群：101169497 
+
 ##功能
 此软件是为了辅助抢红包而开发  
 支持支付宝以及微信，目前只有Android版本，暂时不考虑开发其他版本  
@@ -24,7 +27,7 @@ Below is a chinese instruction:
     
 ##使用
 ###支付宝红包助手
-由于支付宝的数据是保存在本地，如果某一次没有抢到红包，可以把数据清除，重新登录，然后再抢一次，当然在服务端红包应该是有上线限制的，但是如果第一次没有抢到，可以利用这个再抢一次。  
+由于支付宝的数据是保存在本地，如果某一次没有抢到红包，可以把应用数据清除，重新登录，然后再抢一次，当然在服务端红包应该是有上限限制的，但是如果第一次没有抢到，可以利用这个再抢一次，直到抢到为止。  
 另外一种方式就是改系统时间，此应用没有实现  
 ###微信红包助手
 按照提示开启红包服务   
@@ -46,9 +49,10 @@ Below is a chinese instruction:
 ###支付宝红包助手
 1. 直接跳转到应用清除页面
 2. root权限使用"am clear XXXX"命令清除应用数据  
+
 ###微信红包助手 
-使用AccessibilityService对程序进行模拟点击
-目前如何去判断这个页面中某一个红包已经抢过是关键问题，暂时还没有解决
+1. 使用AccessibilityService对程序进行模拟点击
+2. 使用系统服务监听应用UI变化  
 
 ##编译
 使用Eclipse导入项目即可以   
@@ -62,4 +66,6 @@ Below is a chinese instruction:
 
 
 ##参考
-整理中...
+1. ROOT权限 https://github.com/Stericson/RootTools  
+2. 通知点击 http://download.csdn.net/detail/a332324956/8456633
+3. Appmall http://app.sogou.com/m 

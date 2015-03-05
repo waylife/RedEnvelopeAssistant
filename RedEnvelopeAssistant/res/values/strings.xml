@@ -10,5 +10,5 @@
     <string name="action_example">注册</string>
     <string name="action_settings">设置</string>
     <string name="red_envelope_assistant_name">红包助手</string>
-	 
+	  <string name="accessibility_description">启动微信抢红包服务</string>
 </resources>

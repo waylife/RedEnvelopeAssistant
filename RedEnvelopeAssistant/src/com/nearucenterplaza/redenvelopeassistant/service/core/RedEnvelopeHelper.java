@@ -17,7 +17,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 public class RedEnvelopeHelper {
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static void openNotify(AccessibilityEvent event) {
+    public static void openNotification(AccessibilityEvent event) {
         if( !(event.getParcelableData() instanceof Notification)) {
             return;
         }

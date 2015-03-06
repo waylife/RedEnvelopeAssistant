@@ -11,10 +11,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class SettingActivity extends ActionBarActivity implements android.view.View.OnClickListener{
-	CheckBox mAutoClickChatCb;
-	CheckBox mAutoBackWhenGetLuckMoneyCb;
+public class SettingActivity extends ActionBarActivity{
+	RadioGroup mModeRg;
+	RadioButton mAutoModeRb;
+	RadioButton mSafeModeRb;
 	
 	public static void actionTo(Context context){
 		Intent intent=new Intent(context, SettingActivity.class);
@@ -29,29 +33,34 @@ public class SettingActivity extends ActionBarActivity implements android.view.V
 	
 	void initView() {
 		// find views
-		mAutoClickChatCb = (CheckBox) findViewById(R.id.settings_auto_click_on_chat_cb);
-		mAutoBackWhenGetLuckMoneyCb=(CheckBox)findViewById(R.id.settings_auto_back_when_get_lucky_money_cb);
+		mModeRg=(RadioGroup) findViewById(R.id.settings_re_mode_rg);
+		mAutoModeRb = (RadioButton) findViewById(R.id.settings_re_auto_mode_rb);
+		mSafeModeRb=(RadioButton)findViewById(R.id.settings_re_safe_mode_rb);
 
 		// set listeners
-		mAutoClickChatCb.setOnClickListener(this);
-		mAutoBackWhenGetLuckMoneyCb.setOnClickListener(this);
+		mModeRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId) {
+				case R.id.settings_re_auto_mode_rb:
+					SettingHelper.setREAutoMode(mAutoModeRb.isChecked());
+					SettingHelper.setRESafeMode(!mAutoModeRb.isChecked());
+					break;
+				case R.id.settings_re_safe_mode_rb:
+					SettingHelper.setREAutoMode(!mSafeModeRb.isChecked());
+					SettingHelper.setRESafeMode(mSafeModeRb.isChecked());
+					break;
+				default:
+					break;
+				}
+			}
+		});
 		
 		// set values
 		setTitle("设置");
-		mAutoClickChatCb.setChecked(SettingHelper.getAutoClickOnChatPage());
-		mAutoBackWhenGetLuckMoneyCb.setChecked(SettingHelper.getAutoBackWhenGetLuckMoney());
-		
+		mAutoModeRb.setChecked(SettingHelper.getREAutoMode());
+		mSafeModeRb.setChecked(SettingHelper.getRESafeMode());
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.settings_auto_click_on_chat_cb:
-			SettingHelper.setAutoClickOnChatPage(mAutoClickChatCb.isChecked());
-			break;
-		case R.id.settings_auto_back_when_get_lucky_money_cb:
-			SettingHelper.setAutoBackWhenGetLuckMoney(mAutoBackWhenGetLuckMoneyCb.isChecked());
-			break;
-		}
-	}
 }

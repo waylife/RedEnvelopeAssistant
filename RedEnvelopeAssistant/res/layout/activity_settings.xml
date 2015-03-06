@@ -20,30 +20,50 @@
             android:text="红包助手"
             android:textSize="16sp" />
 
-        <CheckBox
-            android:id="@+id/settings_auto_click_on_chat_cb"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="微信聊天页面自动抢红包" />
-
         <TextView
-            android:id="@+id/alipay_root_state_tv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="以上功能存在bug，不建议开启\n如果微信在后台运行，希望在点击通知栏红包提醒后进入聊天页面时自动抢红包，可开启，抢到后，请关闭此功能；后台运行时才打开此功能"
+            android:layout_marginTop="5dp"
+            android:text="运行微信红包助手前请先打开微信，然后按Home退到桌面，打开红包助手，点击开启红包服务，开启后即可自动运行"
             android:textSize="15sp" />
-        
-          <CheckBox
-            android:id="@+id/settings_auto_back_when_get_lucky_money_cb"
+
+        <View
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="抢红包后自动返回上一页" />
-          
-          <TextView
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:background="@color/spilt_line_background" >
+        </View>
+
+        <RadioGroup
+            android:id="@+id/settings_re_mode_rg"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="以上功能存在bug，可能会导致退出微信页面，需要手动再进入，但推荐使用，加快抢红包速度"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/settings_re_auto_mode_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="全自动抢红包模式" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="此模式下如果聊天页面含有红包，会自动退出微信\n如想正常聊天，请关闭红包服务，但关闭后无法自动抢红包\n"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/settings_re_safe_mode_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="安全抢红包模式" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="此模式可以正常聊天，但是聊天页面的红包需要手动点击，程序会自动打开红包"
+                android:textSize="15sp" />
+        </RadioGroup>
     </LinearLayout>
 
     <LinearLayout

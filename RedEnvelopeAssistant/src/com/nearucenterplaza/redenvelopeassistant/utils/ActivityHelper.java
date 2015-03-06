@@ -3,6 +3,7 @@ package com.nearucenterplaza.redenvelopeassistant.utils;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
  * Created by wangyun on 2015/1/21.
  */
 public class ActivityHelper {
+	
+	
 
 	/**
 	 * 慎重使用此函数<br/>
@@ -57,6 +60,15 @@ public class ActivityHelper {
 	 */
 	public static  boolean isAppOnForeground(Context context) {
 		return !isApplicationBroughtToBackground(context);
+	}
+	
+	public static void goHome(Context context){
+        Intent mHomeIntent = new Intent(Intent.ACTION_MAIN);
+        mHomeIntent.addCategory(Intent.CATEGORY_HOME);
+        mHomeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+        context.startActivity(mHomeIntent);
+
 	}
 
 }

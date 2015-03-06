@@ -93,17 +93,20 @@ public class WechatAccService extends AccessibilityService {
 			CharSequence currentActivityName = event.getClassName();
 			if ("com.tencent.mm.ui.LauncherUI".equals(currentActivityName)) {// 聊天以及主页
 				XLog.e(TAG, "Chat page");
-				if (SettingHelper.getAutoClickOnChatPage()) {
+				if (SettingHelper.getREAutoMode()) {
 					handleChatPage(rowNode);
 				}
 			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI".equals(currentActivityName)) {
 				XLog.e(TAG, "LuckyMoneyReceiveUI page");
-				handleLuckyMoneyReceivePage(rowNode);
+				if(SettingHelper.getREAutoMode()||SettingHelper.getRESafeMode())
+					handleLuckyMoneyReceivePage(rowNode);
 			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI"
 					.equals(currentActivityName)) {// lucky
 													// money
 													// details
-				handleLuckyMoneyDetailPage(rowNode);
+				if(SettingHelper.getREAutoMode())
+					handleLuckyMoneyDetailPage(rowNode);
+				
 			} else {
 				XLog.e(TAG, currentActivityName + " page");
 			}
@@ -130,17 +133,13 @@ public class WechatAccService extends AccessibilityService {
 			if (notification.tickerText != null
 					&& notification.tickerText.toString().contains(": [微信红包]")) {
 				log("来红包啦");
-				// performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS);
-				RedEnvelopeHelper.openNotify(event);
+				RedEnvelopeHelper.openNotification(event);
 			}
 		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void peformGlobalBack() {
-		if (!SettingHelper.getAutoBackWhenGetLuckMoney()) {
-			return;
-		}
 		if (System.currentTimeMillis() - mLastGlobalBackTime >= GLOBAL_BACK_TIME) {
 			performGlobalAction(GLOBAL_ACTION_BACK);
 			mLastGlobalBackTime = System.currentTimeMillis();
@@ -166,8 +165,9 @@ public class WechatAccService extends AccessibilityService {
 			return;
 		AccessibilityNodeInfo nodeDetail = RedEnvelopeHelper
 				.getWechatRedEnvelopeOpenDetailNode(node);
-		if (nodeDetail != null) {// 红包已经打开
-			peformGlobalBack();
+		if (nodeDetail != null) {// 红包已经被打开
+//			peformGlobalBack();
+			ActivityHelper.goHome(this);
 		} else {
 			AccessibilityNodeInfo nodeOpen = RedEnvelopeHelper
 					.getWechatRedEnvelopeOpenNode(node);
@@ -184,7 +184,8 @@ public class WechatAccService extends AccessibilityService {
 	public void handleLuckyMoneyDetailPage(AccessibilityNodeInfo node) {
 		if (node == null)
 			return;
-		peformGlobalBack();
+		ActivityHelper.goHome(this);
+		//peformGlobalBack();
 	}
 
 	@TargetApi(Build.VERSION_CODES.KITKAT)

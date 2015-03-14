@@ -8,6 +8,7 @@ import com.nearucenterplaza.redenvelopeassistant.R;
 import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
 import com.nearucenterplaza.redenvelopeassistant.utils.PackageUtils;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
+import com.nearucenterplaza.redenvelopeassistant.utils.XToast;
 import com.nearucenterplaza.redenvelopeassistant.utils.rootbox.RootTools;
 import com.nearucenterplaza.redenvelopeassistant.utils.rootbox.exceptions.RootDeniedException;
 import com.nearucenterplaza.redenvelopeassistant.utils.rootbox.execution.CommandCapture;
@@ -68,13 +69,13 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 			switch (msg.what) {
 			case MSG_FILE_DELETE_DELAY:
 				deleteFile((String) msg.obj);
-				Toast.makeText(getActivity(), "清除数据成功", Toast.LENGTH_SHORT).show();
+				XToast.xtShort(getActivity(), getString(R.string.ui_alipay_clear_data_success));
 				break;
 			case MSG_TOAST_LONG:
-				Toast.makeText(getActivity(), (String) msg.obj, Toast.LENGTH_LONG).show();
+				XToast.xtLong(getActivity(), (String) msg.obj);
 				break;
 			case MSG_TOAST_SHORT:
-				Toast.makeText(getActivity(), (String) msg.obj, Toast.LENGTH_SHORT).show();
+				XToast.xtShort(getActivity(), (String) msg.obj);
 				break;
 			}
 		}
@@ -104,7 +105,7 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 
 		// set values
 		boolean isRoot = RootTools.isRoot();
-		mRootStateTv.setText(isRoot ? "已root" : "未root");
+		mRootStateTv.setText(isRoot ? getString(R.string.ui_alipay_rooted) : getString(R.string.ui_alipay_unroot));
 		mRootStateTv.setTextColor(isRoot ? Color.BLUE : Color.RED);
 		if (isRoot) {
 			mAutoCleanTv.setVisibility(View.VISIBLE);
@@ -148,13 +149,8 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 			msg.what = MSG_FILE_DELETE_DELAY;
 			msg.obj = ALIPAY_PACKAGENAME;
 			mHandler.sendMessage(msg);
-			// if (RootTools.deleteFileOrDirectory(path, true)) {
-			// } else {
-			// Toast.makeText(getActivity(), "清除数据失败，请尝试手动清除数据",
-			// Toast.LENGTH_SHORT).show();
-			// }
 		} else {
-			Toast.makeText(getActivity(), "无法获得Root权限，请在Root管理中放行", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.ui_alipay_not_able_to_get_root), Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -181,7 +177,7 @@ public class AlipayFragment extends Fragment implements OnClickListener {
 
 	void selfClean() {
 		openAlipayDetails(ALIPAY_PACKAGENAME);
-		Toast.makeText(getActivity(), "请在弹出页面手动点击【清除数据】\n不是【清除缓存】", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), getString(R.string.ui_alipay_clear_data_tip), Toast.LENGTH_SHORT).show();
 	}
 
 	void oneKeyClean() {

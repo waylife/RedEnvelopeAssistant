@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="支付宝红包助手"
+            android:text="@string/ui_alipay_name"
             android:textSize="16sp" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/alipay_gap"
-            android:text="root状态"
+            android:text="@string/ui_alipay_root_state"
             android:textSize="25sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_marginTop="@dimen/alipay_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="自动清除数据"
+            android:text="@string/ui_alipay_auto_clear_data"
             android:textColor="@android:color/white" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_marginTop="@dimen/alipay_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="手动清除数据"
+            android:text="@string/ui_alipay_manual_clear_data"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/alipay_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="打开支付宝"
+            android:text="@string/ui_alipay_open_alipay"
             android:textColor="@android:color/white" />
 
         <TextView
@@ -72,7 +72,7 @@
             android:layout_marginTop="@dimen/alipay_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="一键清除数据"
+            android:text="@string/ui_alipay_onekey_clear_data"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

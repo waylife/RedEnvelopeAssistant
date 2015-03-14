@@ -12,7 +12,7 @@ public class FileUtils {
 	public static void recursionDeleteFile(File file) {
 		if (file.isFile()) {
 			boolean b = file.delete();
-			XLog.i("file=" + file.getAbsolutePath() + "result=" + b);
+			//XLog.i("file=" + file.getAbsolutePath() + "result=" + b);
 			return;
 		}
 		if (file.isDirectory()) {

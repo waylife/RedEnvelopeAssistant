@@ -6,8 +6,10 @@ import com.nearucenterplaza.redenvelopeassistant.ui.activity.SettingActivity;
 import com.nearucenterplaza.redenvelopeassistant.utils.AccessibilityServiceHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.PackageUtils;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
+import com.nearucenterplaza.redenvelopeassistant.utils.XToast;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -78,11 +80,14 @@ public class WeChatFragment extends Fragment implements OnClickListener  {
 	void refreshLayout(){
 		if(mServiceStateTv==null)
 			return;
-		boolean isRunning = AccessibilityServiceHelper.isAccessibilitySettingsOn(getActivity());
-		mServiceStateTv.setText(isRunning ? "服务已启动" : "服务未启动");
+		Context context=getActivity();
+		if(context==null)
+			return;
+		boolean isRunning = AccessibilityServiceHelper.isAccessibilitySettingsOn(context);
+		mServiceStateTv.setText(isRunning ? getString(R.string.ui_wechat_tv_service_on) : getString(R.string.ui_wechat_tv_service_off));
 		mServiceStateTv.setTextColor(isRunning ? Color.BLUE : Color.RED);
 
-		mOneKeyCleanTv.setText(isRunning ? "停止服务" : "启动服务");
+		mOneKeyCleanTv.setText(isRunning ? getString(R.string.ui_wechat_btn_service_on_text) : getString(R.string.ui_wechat_btn_service_off_text));
 		mOneKeyCleanTv.setTextColor(isRunning ? Color.RED : Color.WHITE);
 		
 		if(PackageUtils.isAppInstalled(getActivity(), WECHAT_PACKAGENAME)){
@@ -99,6 +104,14 @@ public class WeChatFragment extends Fragment implements OnClickListener  {
 //			AccessibilityServiceHelper.startService(getActivity());
 			break;
 		case R.id.wechat_onekey_clean_data_tv:
+			Context context=getActivity();
+			if(context==null)
+				return;
+			if(AccessibilityServiceHelper.isAccessibilitySettingsOn(getActivity())){
+				XToast.xtShort(context, getText(R.string.close_accessibility_service_hint));
+			}else{
+				XToast.xtShort(context, getText(R.string.open_accessibility_service_hint));
+			}
 			AccessibilityServiceHelper.startService(getActivity());
 			break;
 		case R.id.wechat_openapp_tv:

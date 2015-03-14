@@ -17,6 +17,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class SettingActivity extends ActionBarActivity{
 	RadioGroup mModeRg;
+	RadioGroup mLanguageRg;
 	RadioButton mAutoModeRb;
 	RadioButton mSafeModeRb;
 	
@@ -34,6 +35,7 @@ public class SettingActivity extends ActionBarActivity{
 	void initView() {
 		// find views
 		mModeRg=(RadioGroup) findViewById(R.id.settings_re_mode_rg);
+		mLanguageRg=(RadioGroup)findViewById(R.id.settings_language_rg);
 		mAutoModeRb = (RadioButton) findViewById(R.id.settings_re_auto_mode_rb);
 		mSafeModeRb=(RadioButton)findViewById(R.id.settings_re_safe_mode_rb);
 
@@ -57,8 +59,25 @@ public class SettingActivity extends ActionBarActivity{
 			}
 		});
 		
+		mLanguageRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId) {
+				case R.id.settings_language_simple_chinese_rb:
+					break;
+				case R.id.settings_language_traditional_chinese_rb:
+					break;
+				case R.id.settings_language_english_rb:
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		
 		// set values
-		setTitle("设置");
+		setTitle(getString(R.string.action_settings));
 		mAutoModeRb.setChecked(SettingHelper.getREAutoMode());
 		mSafeModeRb.setChecked(SettingHelper.getRESafeMode());
 	}

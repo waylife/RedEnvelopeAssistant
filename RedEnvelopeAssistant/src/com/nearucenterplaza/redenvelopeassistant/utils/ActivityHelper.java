@@ -15,7 +15,7 @@ public class ActivityHelper {
 	
 
 	/**
-	 * 慎重使用此函数<br/>
+	 * 慎重使用此函数  be cautious to use this<br/>
 	 * GET_TASK was deprecated in API level 21. No longer enforced
 	 */
 	public static String getTopActivityName(Context context) {
@@ -33,7 +33,7 @@ public class ActivityHelper {
 	}
 	
 	/**
-	 * 慎重使用此函数<br/>
+	 * 慎重使用此函数 be cautious to use this<br/>
 	 * GET_TASK was deprecated in API level 21. No longer enforced
 	 */
 	public static boolean isApplicationBroughtToBackground(final Context context) {
@@ -54,7 +54,7 @@ public class ActivityHelper {
 
 	/**
 	 * 是否在前台运行
-	 * 慎重使用此函数<br/>
+	 * 慎重使用此函数 be cautious to use this<br/>
 	 * GET_TASK was deprecated in API level 21. No longer enforced
 	 * @return
 	 */

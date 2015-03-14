@@ -69,7 +69,6 @@ public class PackageUtils {
 		}
 	}
 	
-	/**判断应用是否可以打开*/
 	public static boolean couldOpen(Context context, String packageName) {
 		PackageManager pm = context.getPackageManager();
 		Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -78,7 +77,7 @@ public class PackageUtils {
 		return couldOpen(pm, context, resolveIntent);
 	}
 
-	/**判断应用是否可以打开*/
+
 	private static boolean couldOpen(PackageManager pm, Context context, Intent resolveIntent) {
 		List<ResolveInfo> apps = pm.queryIntentActivities(resolveIntent, 0);
 		if (apps == null || apps.size() < 1) {

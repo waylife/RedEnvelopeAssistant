@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nearucenterplaza.redenvelopeassistant"
-    android:versionCode="9"
-    android:versionName="0.0.9 alpha" >
+    android:versionCode="10"
+    android:versionName="0.1.0 alpha" >
 
     <uses-sdk
         android:minSdkVersion="8"

@@ -3,17 +3,20 @@ package com.nearucenterplaza.redenvelopeassistant.service.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nearucenterplaza.redenvelopeassistant.R;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
 import android.R.integer;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class RedEnvelopeHelper {
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -88,11 +91,11 @@ public class RedEnvelopeHelper {
 		return false;
 	}
 	
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	public static  AccessibilityNodeInfo getLatesWechatRedEnvelopeNode(AccessibilityNodeInfo info) {
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public static  AccessibilityNodeInfo getLatesWechatRedEnvelopeNode(AccessibilityNodeInfo info,Context context) {
 		if (info == null)
 			return null;
-	    List<AccessibilityNodeInfo> resultList = info.findAccessibilityNodeInfosByText("领取红包");
+	    List<AccessibilityNodeInfo> resultList = info.findAccessibilityNodeInfosByText(context.getString(R.string.wechat_acc_service_red_envelope_list_identification));
         if(resultList!=null&&resultList.isEmpty()) {
             for(int i = resultList.size() - 1; i >= 0; i --) {
                 AccessibilityNodeInfo parent = resultList.get(i).getParent();

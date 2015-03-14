@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">紅包助手</string>
+    <string name="title_section1">微信紅包</string>
+    <string name="title_section2">支付寶紅包</string>
+    <string name="title_section3">關於</string>
+    <string name="navigation_drawer_open">打開抽屜</string>
+    <string name="navigation_drawer_close">關閉抽屜</string>
+    <string name="action_example">註冊</string>
+    <string name="action_settings">設置</string>
+    <string name="red_envelope_assistant_name">紅包助手</string>
+	<string name="accessibility_description">啟動微信搶紅包服務</string>
+	<string name="open_accessibility_service_hint">請在彈出頁面選擇打開【紅包助手】服務，否則將無法使用本功能</string>
+	<string name="close_accessibility_service_hint">請在彈出頁面選擇關閉【紅包助手】服務</string>
+	<string name="ui_wechat_btn_service_on_text">停止服務</string>
+	<string name="ui_wechat_btn_service_off_text">啟動服務</string>
+	<string name="ui_wechat_tv_service_on">服務已啟動</string>
+	<string name="ui_wechat_tv_service_off">服務未啟動</string>
+	<string name="ui_wechat_open_wechat">打開微信</string>
+	<string name="ui_wechat_one_key_start_service">壹鍵啟動服務</string>
+	<string name="ui_wechat_settings">設置</string>
+	<string name="ui_wechat_name">微信紅包助手</string>
+	<string name="ui_wechat_service_state">服務狀態</string>
+	<string name="ui_alipay_name">支付寶紅包助手</string>
+	<string name="ui_alipay_clear_data_success">清除數據成功</string>
+	<string name="ui_alipay_rooted">已root</string>
+	<string name="ui_alipay_unroot">未root</string>
+	<string name="ui_alipay_not_able_to_get_root">無法獲得Root權限，請在Root管理中放行</string>
+	<string name="ui_alipay_clear_data_tip">請在彈出頁面手動點擊【清除數據】\n不是【清除緩存】</string>
+	<string name="ui_alipay_root_state">root狀態</string>
+	<string name="ui_alipay_auto_clear_data">自動清除數據</string>
+	<string name="ui_alipay_manual_clear_data">手動清除數據</string>
+	<string name="ui_alipay_open_alipay">打開支付寶</string>
+	<string name="ui_alipay_onekey_clear_data">壹鍵清除數據</string>
+	<string name="wechat_acc_service_start_notification">微信紅包服務已啟動</string>
+	<string name="wechat_acc_service_red_envelope_identification">: [微信红包]</string>
+	<string name="ui_about_version">版本：</string>
+	<string name="ui_about_default_version">版本：1.0.0</string>
+	<string name="ui_about_description">此應用完全免費\n1.支付寶紅包 （每次搶到紅包後,使用本軟件清除應用數據後，再登錄支付寶即可繼續搶紅包）\n2.微信紅包（請打開要搶紅包的群頁面，應用會自動無人值守搶紅包，請保持屏幕常亮）</string>
+	<string name="ui_about_statement">使用本軟体帶來的任何風險問題，本人以及團隊不負任何責任</string>
+	<string name="ui_about_author">By RxRead</string>
+	<string name="ui_settings_instruction">運行微信紅包助手前請先打開微信，然後按Home退到桌面，打開紅包助手，點擊開啟紅包服務，開啟後即可自動運行</string>
+	<string name="ui_settings_auto_mode">全自動搶紅包模式</string>
+	<string name="ui_settings_safe_mode">安全搶紅包模式</string>
+	<string name="ui_settings_auto_mode_description">此模式下如果聊天頁面含有紅包，會自動退出微信\n如想正常聊天，請關閉紅包服務，但關閉後無法自動搶紅包\n</string>
+	<string name="ui_settings_safe_mode_description">此模式可以正常聊天，但是聊天頁面的紅包需要手動點擊，程序會自動打開紅包</string>
+</resources>

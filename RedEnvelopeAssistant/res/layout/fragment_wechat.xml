@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="微信红包助手"
+            android:text="@string/ui_wechat_name"
             android:textSize="16sp" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/wechat_gap"
-            android:text="服务状态"
+            android:text="@string/ui_wechat_service_state"
             android:textSize="25sp" />
     </LinearLayout>
 
@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/wechat_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="设置"
+            android:text="@string/ui_wechat_settings"
             android:textColor="@android:color/white" />
         
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginTop="@dimen/wechat_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="打开微信"
+            android:text="@string/ui_wechat_open_wechat"
             android:textColor="@android:color/white" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_marginTop="@dimen/wechat_gap"
             android:background="@drawable/btn_green_selector"
             android:gravity="center"
-            android:text="一键启动服务"
+            android:text="@string/ui_wechat_one_key_start_service"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

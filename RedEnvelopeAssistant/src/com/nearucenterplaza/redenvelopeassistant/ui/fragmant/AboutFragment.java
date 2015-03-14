@@ -55,7 +55,7 @@ public class AboutFragment extends Fragment implements OnClickListener {
 		mGoGithubTv.setOnClickListener(this);
 
 		// set values
-		mVersionTv.setText("版本"+AppUtil.getVersionName(getActivity()));
+		mVersionTv.setText(getString(R.string.ui_about_version)+AppUtil.getVersionName(getActivity()));
 	}
 
 	@Override

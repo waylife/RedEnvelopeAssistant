@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,14 +17,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="红包助手"
+            android:text="@string/app_name"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="运行微信红包助手前请先打开微信，然后按Home退到桌面，打开红包助手，点击开启红包服务，开启后即可自动运行"
+            android:text="@string/ui_settings_instruction"
             android:textSize="15sp" />
 
         <View
@@ -44,33 +44,68 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="全自动抢红包模式" />
+                android:text="@string/ui_settings_auto_mode" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="此模式下如果聊天页面含有红包，会自动退出微信\n如想正常聊天，请关闭红包服务，但关闭后无法自动抢红包\n"
+                android:text="@string/ui_settings_auto_mode_description"
                 android:textSize="15sp" />
 
             <RadioButton
                 android:id="@+id/settings_re_safe_mode_rb"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="安全抢红包模式" />
+                android:text="@string/ui_settings_safe_mode" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="此模式可以正常聊天，但是聊天页面的红包需要手动点击，程序会自动打开红包"
+                android:text="@string/ui_settings_safe_mode_description"
                 android:textSize="15sp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/ui_settings_language"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:background="@color/spilt_line_background"
+            android:visibility="gone" >
+        </View>
+
+        <RadioGroup
+            android:id="@+id/settings_language_rg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+
+            <RadioButton
+                android:id="@+id/settings_language_simple_chinese_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="简体中文" />
+
+            <RadioButton
+                android:id="@+id/settings_language_traditional_chinese_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="繁體中文" />
+
+            <RadioButton
+                android:id="@+id/settings_language_english_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="English" />
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>

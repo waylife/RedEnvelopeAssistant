@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAllMask"
-    android:accessibilityFeedbackType="feedbackSpoken"
     android:accessibilityFlags="flagDefault"
-    android:canRequestEnhancedWebAccessibility="true"
-    android:canRequestTouchExplorationMode="true"
     android:canRetrieveWindowContent="true"
     android:notificationTimeout="10"
     android:description="@string/accessibility_description"
     android:settingsActivity="com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity" />
-<!-- typeAllMask typeViewClicked typeViewFocused -->
+<!-- typeAllMask typeViewClicked typeViewFocused 
+    android:accessibilityFeedbackType="feedbackSpoken"
+        android:canRequestTouchExplorationMode="true"
+    android:canRequestEnhancedWebAccessibility="true"
+-->

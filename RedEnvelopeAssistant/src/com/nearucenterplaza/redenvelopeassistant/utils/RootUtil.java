@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import android.util.Log;
-/**<br/>
- * 备用方案:http://itmanito.com/geolo/?p=67<br/> */
+/**
+ * reference:http://itmanito.com/geolo/?p=67<br/> 
+ * */
 public class RootUtil {
 	private final static String TAG = "RootUtil";
 
-	/** 判断手机是否root，不弹出root请求�?br/> */
+	/** Check weather the phone is root or not, without a root bypass popup dialog */
 	public static boolean isRoot() {
 		String binPath = "/system/bin/su";
 		String xBinPath = "/system/xbin/su";
@@ -25,7 +26,6 @@ public class RootUtil {
 		Process p = null;
 		try {
 			p = Runtime.getRuntime().exec("ls -l " + filePath);
-			// 获取返回内容
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
 			String str = in.readLine();

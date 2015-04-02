@@ -1,7 +1,7 @@
 # RedEnvelopeAssistant
-RedEnvelopeAssistant
-以下是一份英文介绍:  
-[中文](/README_EN.md)  
+Red Envelope Assistant  
+以下是一份英文介绍:
+[中文](/README.md)  
 
 
 ---
@@ -13,10 +13,10 @@ If you are not a user of both the two applications, this application may not sui
 
 #Download And Video
 If you want to know more, check the apk and video.
-##APK  
+Download
 only available for Android 4.4+
 https://github.com/waylife/RedEnvelopeAssistant/tree/master/APK
-##Video   https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video
+Video     https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video
 
 
 #Compile

@@ -1,14 +1,14 @@
 # RedEnvelopeAssistant
 RedEnvelopeAssistant
-Below is a chinese instruction:
+Below is a chinese instruction:  
 [For English](/README_EN.md)
 
 ---
 #红包助手
 ---
-完全免费开源（MIT协议）的抢红包软件  
-欢迎各路大神完善改进  
-QQ交流群：101169497
+完全免费开源（MIT协议）的抢红包软件
+欢迎各路大神完善改进
+QQ交流群：101169497  
 
 做这个软件纯粹是发现Android的模拟点击十分好玩，然后顺道写了一个
 有此基础，可以再扩展其他的很多模拟点击程序  
@@ -33,8 +33,8 @@ QQ交流群：101169497
 
 ##下载以及使用
 
-下载  https://github.com/waylife/RedEnvelopeAssistant/tree/master/APK
-演示视频  https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video
+下载    https://github.com/waylife/RedEnvelopeAssistant/tree/master/APK
+演示视频    https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video
 ###微信红包助手
 首先打开微信，然后打开红包助手，按照提示打开红包助手服务，按下Home键，回到桌面，程序会自动运行（运行过程中请保持屏幕常亮）。
 
@@ -43,7 +43,7 @@ QQ交流群：101169497
 由于支付宝的数据是保存在本地，如果某一次没有抢到红包，可以把应用数据清除，重新登录，然后再抢一次，当然在服务端红包应该是有上限限制的，但是如果第一次没有抢到，可以利用这个再抢一次，直到抢到为止。  
 另外一种方式就是改系统时间，此应用没有实现  
 
-#反馈与建议
+##反馈与建议
 欢迎反馈bug以及提出改进建议  
 有任何使用方面的问题也可以提出
 https://github.com/waylife/RedEnvelopeAssistant/issues/new  
@@ -71,12 +71,7 @@ https://github.com/waylife/RedEnvelopeAssistant/issues/new
 使用Eclipse导入项目即可以  
 
 ###Android Studio
-使用Android Studio 1.0以上版本即可，IDE会自动进行转换  
-
-
-##后续
-1. 修复bug
-2. 代码结构优化
+使用Android Studio 1.0以上版本导入即可，IDE会自动进行转换  
 
 
 

@@ -48,13 +48,14 @@ public class WechatAccService extends AccessibilityService {
 				Notifier.TYPE_WECHAT_SERVICE_RUNNING, false);
 	}
 
-	// @TargetApi(Build.VERSION_CODES.KITKAT)
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
 		if (event == null)
 			return;
-		if(SettingHelper.getREAutoMode())
+		if(SettingHelper.getREAutoMode()){
 			handleNotificationChange(event);
+		}
 		AccessibilityNodeInfo nodeInfo = event.getSource();
 		if (nodeInfo == null) {
 			return;
@@ -118,9 +119,13 @@ public class WechatAccService extends AccessibilityService {
 		if (node == null)
 			return;
 		if(android.os.Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
-			recycleChatPage(node);
+			 AccessibilityNodeInfo tempNode=RedEnvelopeHelper.getLastWechatRedEnvelopeNodeById(node);
+			 if(tempNode!=null){
+				 tempNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+				 tempNode.recycle();
+			 }
 		}else if(android.os.Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN){
-			 AccessibilityNodeInfo tempNode=RedEnvelopeHelper.getLatesWechatRedEnvelopeNode(node,this);
+			 AccessibilityNodeInfo tempNode=RedEnvelopeHelper.getLastWechatRedEnvelopeNodeByText(node,this);
 			 if(tempNode!=null){
 				 tempNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 				 tempNode.recycle();
@@ -155,37 +160,11 @@ public class WechatAccService extends AccessibilityService {
 		ActivityHelper.goHome(this);
 	}
 
-	@TargetApi(Build.VERSION_CODES.KITKAT)
-	public boolean recycleChatPage(AccessibilityNodeInfo info) {
-		if (info.getChildCount() == 0) {
-			// XLog.i(TAG, "child widget:" + info.getClassName() +
-			// " showDialog:" + info.canOpenPopup() + " text:" + info.getText()
-			// + " windowId:" + info.getWindowId());
-			info.recycle();
-			return false;
-		} else {
-			if (RedEnvelopeHelper.isWechatRedEnvelopeNode(info)) {
-				info.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-				info.recycle();
-				return true;
-			}
-			for (int i = info.getChildCount() - 1; i > 0; i--) {
-				if (info.getChild(i) != null) {
-					boolean returnValue = recycleChatPage(info.getChild(i));
-					if (returnValue) {
-						info.recycle();
-						return true;
-					} else
-						continue;
-				}
-			}
-		}
-		info.recycle();
-		return false;
-	}
+	
 
 	@Override
 	public void onInterrupt() {
+		log("onInterrupt");
 	}
 
 	public void onDestroy() {

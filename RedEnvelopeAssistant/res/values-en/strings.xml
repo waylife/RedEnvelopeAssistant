@@ -13,8 +13,8 @@
 	<string name="accessibility_description">Start wechat red envelope automatically getting service</string>
 	<string name="open_accessibility_service_hint">Please open the Red Envelope service at the pop-up page!!!</string>
 	<string name="close_accessibility_service_hint">Please close the Red Envelope service at the pop-up page</string>
-	<string name="ui_wechat_btn_service_on_text">STOP</string>
-	<string name="ui_wechat_btn_service_off_text">START</string>
+	<string name="ui_wechat_btn_service_on_text">STOP SERVICE</string>
+	<string name="ui_wechat_btn_service_off_text">START SERVICE</string>
 	<string name="ui_wechat_tv_service_on">Service Started</string>
 	<string name="ui_wechat_tv_service_off">Service NOT Started</string>
 	<string name="ui_wechat_open_wechat">Open Wechat</string>
@@ -38,7 +38,7 @@
 	<string name="ui_about_version">Version: </string>
 	<string name="ui_about_default_version">Version:1.0.0</string>
 	<string name="ui_about_description">The application totally free and opensource.\n1.Alipay red envelope(Each time after your grab the red envelopes but do not get one, you can use this clear the application data easily and grap the envelopes again).\n2.Wechat red envelope( Open the wechat and start the red service and keep the screen on)</string>
-	<string name="ui_about_statement">I and my team is not responsible for any loss of using this application</string>
+	<string name="ui_about_statement">My team is not responsible for any loss by using this application</string>
 	<string name="ui_about_author">By RxRead</string>
 	<string name="ui_settings_instruction">Before start the wechat red envelope service, open wechat application first, then press the Home button to go to launcher, open the Red Envelope Assistant and start the red envelope service, then everything will run automatically.</string>
 	<string name="ui_settings_auto_mode">Auto Mode</string>

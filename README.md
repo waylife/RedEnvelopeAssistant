@@ -7,11 +7,11 @@ Below is a chinese instruction:
 #红包助手
 ---
 完全免费开源（MIT协议）的抢红包软件
-欢迎各路大神完善改进
-QQ交流群：101169497  
+欢迎各路大神完善改进  
+QQ交流群：101169497
 
-做这个软件纯粹是发现Android的模拟点击十分好玩，然后顺道写了一个
-有此基础，可以再扩展其他的很多模拟点击程序  
+做这个软件纯粹是发现Android的模拟点击十分好玩，然后顺道写了一个  
+有此基础，可以再扩展其他的很多模拟点击程序
 
 2015春节过去了，2016还会远吗？  
 赶紧收藏吧，等着春节直接用，嘿嘿
@@ -33,8 +33,9 @@ QQ交流群：101169497
 
 ##下载以及使用
 
-下载    https://github.com/waylife/RedEnvelopeAssistant/tree/master/APK
-演示视频    https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video
+下载      https://github.com/waylife/RedEnvelopeAssistant/tree/master/APK  
+
+演示视频      https://github.com/waylife/RedEnvelopeAssistant/tree/master/Video   
 ###微信红包助手
 首先打开微信，然后打开红包助手，按照提示打开红包助手服务，按下Home键，回到桌面，程序会自动运行（运行过程中请保持屏幕常亮）。
 

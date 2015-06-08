@@ -7,7 +7,7 @@ Below is a chinese instruction:
 #红包助手
 ---
 完全免费开源（MIT协议）的抢红包软件
-欢迎各路大神完善改进  
+
 QQ交流群：101169497
 
 做这个软件纯粹是发现Android的模拟点击十分好玩，然后顺道写了一个  
@@ -47,7 +47,9 @@ QQ交流群：101169497
 ##反馈与建议
 欢迎反馈bug以及提出改进建议  
 有任何使用方面的问题也可以提出
-https://github.com/waylife/RedEnvelopeAssistant/issues/new  
+https://github.com/waylife/RedEnvelopeAssistant/issues/new
+或者
+https://github.com/waylife/RedEnvelopeAssistant/issues/2  
 
 ##已知问题
 ###微信红包助手

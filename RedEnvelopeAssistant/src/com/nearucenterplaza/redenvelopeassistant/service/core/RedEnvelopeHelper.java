@@ -38,7 +38,7 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/amt");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/ar6");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
@@ -54,7 +54,7 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenDetailNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/amk");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/aqx");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
@@ -136,9 +136,10 @@ public class RedEnvelopeHelper {
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static  AccessibilityNodeInfo getLastWechatRedEnvelopeNodeById(AccessibilityNodeInfo info) {
-		if (info == null)
+		if (info == null)//com.tencent.mm:id/uv
 			return null;
-		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/s_");
+		//TextView com.tencent.mm:id/v8 领取红包,parent:LinearLayout
+		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/uv");
 		for (int i = list.size()-1; i >0; i--) {
 			if("android.widget.LinearLayout".equals(list.get(i).getClassName()))
 				return list.get(i);

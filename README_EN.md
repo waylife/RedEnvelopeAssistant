@@ -5,8 +5,8 @@ Red Envelope Assistant
 
 
 ---
+**PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED**  
 A totally opensource(MIT license) Red Envelope Assistant android client.
-QQ Group: 101169497
 
 This application is intended for Chinese popular android application Wechat and Alipay. A Tool help you get the red envelopes more conveniently.
 If you are not a user of both the two applications, this application may not suit you well.

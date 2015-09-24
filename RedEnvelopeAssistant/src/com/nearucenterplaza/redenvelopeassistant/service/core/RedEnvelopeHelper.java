@@ -1,20 +1,17 @@
 package com.nearucenterplaza.redenvelopeassistant.service.core;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nearucenterplaza.redenvelopeassistant.R;
-import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
-
-import android.R.integer;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+
+import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class RedEnvelopeHelper {
@@ -38,7 +35,7 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/ar6");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/aww");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
@@ -54,7 +51,7 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenDetailNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/aqx");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/av4");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
@@ -123,7 +120,7 @@ public class RedEnvelopeHelper {
 		if (info == null)
 			return null;
 	    List<AccessibilityNodeInfo> resultList = info.findAccessibilityNodeInfosByText(context.getString(R.string.wechat_acc_service_red_envelope_list_identification));
-        if(resultList!=null&&resultList.isEmpty()) {
+        if(resultList!=null && !resultList.isEmpty()) {
             for(int i = resultList.size() - 1; i >= 0; i --) {
                 AccessibilityNodeInfo parent = resultList.get(i).getParent();
                 if(parent != null) {
@@ -139,9 +136,10 @@ public class RedEnvelopeHelper {
 		if (info == null)//com.tencent.mm:id/uv
 			return null;
 		//TextView com.tencent.mm:id/v8 领取红包,parent:LinearLayout
-		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/uv");
-		for (int i = list.size()-1; i >0; i--) {
-			if("android.widget.LinearLayout".equals(list.get(i).getClassName()))
+		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/w_");
+		for (int i = list.size()-1; i >= 0; i--) {
+			CharSequence className = list.get(i).getClassName();
+			if("android.widget.LinearLayout".equals(className))
 				return list.get(i);
 		}
 		return null;

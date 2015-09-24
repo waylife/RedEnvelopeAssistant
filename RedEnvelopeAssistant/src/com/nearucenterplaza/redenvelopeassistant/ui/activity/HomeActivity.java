@@ -1,23 +1,18 @@
 package com.nearucenterplaza.redenvelopeassistant.ui.activity;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.nearucenterplaza.redenvelopeassistant.R;
-import com.nearucenterplaza.redenvelopeassistant.R.id;
-import com.nearucenterplaza.redenvelopeassistant.R.layout;
-import com.nearucenterplaza.redenvelopeassistant.R.menu;
-import com.nearucenterplaza.redenvelopeassistant.R.string;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.AboutFragment;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.AlipayFragment;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.NavigationDrawerFragment;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.WeChatFragment;
-import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.NavigationDrawerFragment.NavigationDrawerCallbacks;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
 
 public class HomeActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 

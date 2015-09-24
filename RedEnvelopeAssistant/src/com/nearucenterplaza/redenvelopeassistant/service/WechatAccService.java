@@ -71,22 +71,26 @@ public class WechatAccService extends AccessibilityService {
 		// ActivityHelper.getTopActivityName(RedEnvelopeApplication.getInstance());
 		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
 			CharSequence currentActivityName = event.getClassName();
-			if ("com.tencent.mm.ui.LauncherUI".equals(currentActivityName)) {// 聊天以及主页 chat page and the main page
+			if ("com.tencent.mm.ui.LauncherUI".equals(currentActivityName) || "com.tencent.mm.ui.chatting.ChattingUI".equals(currentActivityName)) {
+				// 聊天以及主页 chat page and the main page
 				log( "Chat page");
 				if (SettingHelper.getREAutoMode()) {
 					handleChatPage(rowNode);
 				}
 			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI"
-					.equals(currentActivityName)) {//打开红包主页 red envelope open page
+					.equals(currentActivityName)) {
+				//打开红包主页 red envelope open page
 				log("LuckyMoneyReceiveUI page");
 				if (SettingHelper.getREAutoMode()
-						|| SettingHelper.getRESafeMode())
+						|| SettingHelper.getRESafeMode()){
 					handleLuckyMoneyReceivePage(rowNode);
+				}
 			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI"
-					.equals(currentActivityName)) {// 红包详情主页 red envelope detail page
-				if (SettingHelper.getREAutoMode())
+					.equals(currentActivityName)) {
+				// 红包详情主页 red envelope detail page
+				if (SettingHelper.getREAutoMode()){
 					handleLuckyMoneyDetailPage(rowNode);
-
+				}
 			} else {
 				log( currentActivityName + " page");
 			}

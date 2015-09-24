@@ -1,26 +1,17 @@
 package com.nearucenterplaza.redenvelopeassistant.service.core;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import com.nearucenterplaza.redenvelopeassistant.R;
-import com.nearucenterplaza.redenvelopeassistant.ui.RedEnvelopeApplication;
-import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
-
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.RemoteViews;
+import android.support.v4.app.NotificationCompat;
+
+import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.ui.RedEnvelopeApplication;
+import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
 
 /**
  * Notification
@@ -77,34 +68,34 @@ public class Notifier {
 	public void notify(String title, String message, String tickerText, int type, boolean canClear) {
 		try {
 			Context context = RedEnvelopeApplication.getInstance();
-			Notification notification = new Notification();
-			notification.icon = R.drawable.ic_launcher;
-			notification.defaults = Notification.DEFAULT_LIGHTS;
-			// notification.defaults |= Notification.DEFAULT_SOUND;
-			// notification.defaults |= Notification.DEFAULT_VIBRATE;
-			if (canClear)
-				notification.flags |= Notification.FLAG_AUTO_CANCEL;
-			else
-				notification.flags |= Notification.FLAG_NO_CLEAR;
+			NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-			if (android.os.Build.VERSION.SDK_INT >= 16) {// Android 4.1之后才有
-				notification.priority = Notification.PRIORITY_MAX;
-			}
-			notification.tickerText = tickerText;
-
-			notification.when = System.currentTimeMillis();
 			Intent intent = new Intent();
 			PendingIntent contentIntent = null;
 			switch (type) {
 			case TYPE_WECHAT_SERVICE_RUNNING:
 				intent.setClass(context, HomeActivity.class);
 				contentIntent = PendingIntent.getActivity(context, TYPE_WECHAT_SERVICE_RUNNING, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-				notification.setLatestEventInfo(context, title, message, contentIntent);
 				break;
 			}
+			
+			builder.setSmallIcon(R.drawable.ic_launcher)
+					.setDefaults(Notification.DEFAULT_LIGHTS)
+					.setTicker(tickerText).setWhen(System.currentTimeMillis())
+					.setContentTitle(title).setContentText(message);
+			if (android.os.Build.VERSION.SDK_INT >= 16) {// Android 4.1之后才有
+				builder.setPriority(Notification.PRIORITY_MAX);
+			}
+						
 			if (contentIntent != null) {
-				notification.contentIntent = contentIntent;
-				notificationManager.notify(type, notification);
+				Notification nt = builder.setContentIntent(contentIntent).build();
+				
+				if (canClear)
+					nt.flags |= Notification.FLAG_AUTO_CANCEL;
+				else
+					nt.flags |= Notification.FLAG_NO_CLEAR;
+				
+				notificationManager.notify(type, nt);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

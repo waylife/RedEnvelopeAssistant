@@ -24,4 +24,12 @@ public class SettingHelper {
 	public static boolean getRESafeMode(){
 		return PreferenceUtil.getBooleanValue(RE_SAFE_MODE, false);
 	}
+	
+	public static boolean setRESound(boolean value){
+		return PreferenceUtil.setBooleanValue(RE_SOUND, value);
+	}
+	
+	public static boolean isRESound(){
+		return PreferenceUtil.getBooleanValue(RE_SOUND, true);
+	}
 }

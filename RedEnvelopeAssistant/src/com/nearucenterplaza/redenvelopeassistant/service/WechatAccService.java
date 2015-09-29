@@ -1,10 +1,12 @@
 package com.nearucenterplaza.redenvelopeassistant.service;
 
 import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.ui.RedEnvelopeApplication;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.WeChatFragment;
 import com.nearucenterplaza.redenvelopeassistant.service.core.Notifier;
 import com.nearucenterplaza.redenvelopeassistant.service.core.RedEnvelopeHelper;
 import com.nearucenterplaza.redenvelopeassistant.service.core.SettingHelper;
+import com.nearucenterplaza.redenvelopeassistant.service.core.SoundHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.ActivityHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
@@ -113,6 +115,11 @@ public class WechatAccService extends AccessibilityService {
 			if (notification.tickerText != null
 					&& notification.tickerText.toString().contains(getString(R.string.wechat_acc_service_red_envelope_notification_identification))) {
 				log("来红包啦 get red envelope message");
+				if(SettingHelper.isRESound()){
+					((RedEnvelopeApplication) RedEnvelopeApplication
+							.getInstance()).getSoundHelper()
+							.playSoundRedEnvelopeComing();
+				}
 				RedEnvelopeHelper.openNotification(event);
 			}
 		}

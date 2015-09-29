@@ -106,6 +106,12 @@
                 android:layout_height="wrap_content"
                 android:text="English" />
         </RadioGroup>
+        
+        <Switch android:id="@+id/settings_sound_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="播放声音"/>
     </LinearLayout>
 
 </ScrollView>

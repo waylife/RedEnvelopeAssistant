@@ -11,6 +11,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.utils.LogUtil;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -35,11 +36,11 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/aww");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/b2c");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
-			XLog.e("WechatAccService", "e2ee"+tempNode.isVisibleToUser()+"-"+tempNode.isEnabled());
+			LogUtil.d("e2ee"+tempNode.isVisibleToUser()+"-"+tempNode.isEnabled());
 			if ("android.widget.Button".equals(tempNode.getClassName())&&tempNode.isVisibleToUser()){
 				return tempNode;
 			}
@@ -51,7 +52,8 @@ public class RedEnvelopeHelper {
 	public static AccessibilityNodeInfo getWechatRedEnvelopeOpenDetailNode(AccessibilityNodeInfo info) {
 		if (info == null)
 			return null;
-		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/av4");
+		List<AccessibilityNodeInfo> list = info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/b2c");
+		LogUtil.d("handleLuckyMoneyReceivePage");
 		AccessibilityNodeInfo tempNode=null;
 		for(int i=0;i<list.size();i++){
 			tempNode=list.get(i);
@@ -136,11 +138,13 @@ public class RedEnvelopeHelper {
 		if (info == null)//com.tencent.mm:id/uv
 			return null;
 		//TextView com.tencent.mm:id/v8 领取红包,parent:LinearLayout
-		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/w_");
+		List<AccessibilityNodeInfo>list=info.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/dq");
+		LogUtil.d("list="+list);
 		for (int i = list.size()-1; i >= 0; i--) {
 			CharSequence className = list.get(i).getClassName();
-			if("android.widget.LinearLayout".equals(className))
-				return list.get(i);
+			LogUtil.d("className="+className);
+			if("android.widget.TextView".equals(className))
+				return list.get(i).getParent();
 		}
 		return null;
 	}

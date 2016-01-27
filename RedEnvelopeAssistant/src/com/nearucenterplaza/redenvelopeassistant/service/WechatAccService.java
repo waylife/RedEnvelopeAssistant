@@ -1,11 +1,14 @@
 package com.nearucenterplaza.redenvelopeassistant.service;
 
 import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.ui.RedEnvelopeApplication;
 import com.nearucenterplaza.redenvelopeassistant.ui.fragmant.WeChatFragment;
 import com.nearucenterplaza.redenvelopeassistant.service.core.Notifier;
 import com.nearucenterplaza.redenvelopeassistant.service.core.RedEnvelopeHelper;
 import com.nearucenterplaza.redenvelopeassistant.service.core.SettingHelper;
+import com.nearucenterplaza.redenvelopeassistant.service.core.SoundHelper;
 import com.nearucenterplaza.redenvelopeassistant.utils.ActivityHelper;
+import com.nearucenterplaza.redenvelopeassistant.utils.LogUtil;
 import com.nearucenterplaza.redenvelopeassistant.utils.XLog;
 
 import android.R.anim;
@@ -67,28 +70,41 @@ public class WechatAccService extends AccessibilityService {
 			return;
 		}
 
+		LogUtil.d("eventtype:" + event.getEventType());
+		
 		// String currentActivityName =
 		// ActivityHelper.getTopActivityName(RedEnvelopeApplication.getInstance());
-		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-			CharSequence currentActivityName = event.getClassName();
-			if ("com.tencent.mm.ui.LauncherUI".equals(currentActivityName)) {// 聊天以及主页 chat page and the main page
-				log( "Chat page");
+		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+				|| event.getEventType() == AccessibilityEvent.TYPE_VIEW_CLICKED) {
+//		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+			CharSequence currentClassName = event.getClassName();
+			LogUtil.d("currentClassName:" + currentClassName);
+			if ("com.tencent.mm.ui.LauncherUI".equals(currentClassName) || "com.tencent.mm.ui.chatting.ChattingUI".equals(currentClassName)) {
+				// 聊天以及主页 chat page and the main page
+				LogUtil.d("Chat page");
 				if (SettingHelper.getREAutoMode()) {
 					handleChatPage(rowNode);
 				}
-			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI"
-					.equals(currentActivityName)) {//打开红包主页 red envelope open page
-				log("LuckyMoneyReceiveUI page");
+			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI".equals(currentClassName)) {
+				//打开红包主页 red envelope open page
+				LogUtil.d("LuckyMoneyReceiveUI page");
 				if (SettingHelper.getREAutoMode()
-						|| SettingHelper.getRESafeMode())
+						|| SettingHelper.getRESafeMode()){
 					handleLuckyMoneyReceivePage(rowNode);
-			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI"
-					.equals(currentActivityName)) {// 红包详情主页 red envelope detail page
-				if (SettingHelper.getREAutoMode())
+					if(SettingHelper.isRESound()){
+						((RedEnvelopeApplication) RedEnvelopeApplication
+								.getInstance()).getSoundHelper()
+								.playSoundRedEnvelopeComing();
+					}
+				}
+			} else if ("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI".equals(currentClassName)) {
+				// 红包详情主页 red envelope detail page
+				LogUtil.d("red envelope detail page");
+				if (SettingHelper.getREAutoMode()){
 					handleLuckyMoneyDetailPage(rowNode);
-
+				}
 			} else {
-				log( currentActivityName + " page");
+				log( currentClassName + " page");
 			}
 		}
 	}
@@ -96,7 +112,7 @@ public class WechatAccService extends AccessibilityService {
 	/** handle notification notice */
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	public void handleNotificationChange(AccessibilityEvent event) {
-		log( "eventtype:" + event.getEventType());
+		log( "handleNotificationChange eventtype:" + event.getEventType());
 		if (event == null)
 			return;
 		
@@ -118,6 +134,7 @@ public class WechatAccService extends AccessibilityService {
 	public void handleChatPage(AccessibilityNodeInfo node) {
 		if (node == null)
 			return;
+		LogUtil.d("handleChatPage");
 		if(android.os.Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
 			 AccessibilityNodeInfo tempNode=RedEnvelopeHelper.getLastWechatRedEnvelopeNodeById(node);
 			 if(tempNode!=null){
@@ -136,15 +153,16 @@ public class WechatAccService extends AccessibilityService {
 	public void handleLuckyMoneyReceivePage(AccessibilityNodeInfo node) {
 		if (node == null)
 			return;
-		AccessibilityNodeInfo nodeDetail = RedEnvelopeHelper
-				.getWechatRedEnvelopeOpenDetailNode(node);
+		LogUtil.d("handleLuckyMoneyReceivePage");
+		AccessibilityNodeInfo nodeDetail = RedEnvelopeHelper.getWechatRedEnvelopeOpenDetailNode(node);
+		LogUtil.d("nodeDetail="+nodeDetail);
 		if (nodeDetail != null) {// the red envelope already opened
 									// 红包已经被打开
 			if (SettingHelper.getREAutoMode())
 				ActivityHelper.goHome(this);
 		} else {
-			AccessibilityNodeInfo nodeOpen = RedEnvelopeHelper
-					.getWechatRedEnvelopeOpenNode(node);
+			AccessibilityNodeInfo nodeOpen = RedEnvelopeHelper.getWechatRedEnvelopeOpenNode(node);
+			LogUtil.d("nodeOpen="+nodeOpen);
 			if (nodeOpen != null) {
 				nodeOpen.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 				nodeOpen.recycle();

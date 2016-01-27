@@ -7,6 +7,8 @@ import android.content.Intent;
 
 import java.util.List;
 
+import com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity;
+
 /**
  * Created by wangyun on 2015/1/21.
  */
@@ -68,7 +70,12 @@ public class ActivityHelper {
         mHomeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         context.startActivity(mHomeIntent);
-
+	}
+	
+	public static void goMainActivity(Context context){
+		Intent intent = new Intent();
+		intent.setClassName("com.nearucenterplaza.redenvelopeassistant", "com.nearucenterplaza.redenvelopeassistant.ui.activity.HomeActivity");
+		context.startActivity(intent);
 	}
 
 }

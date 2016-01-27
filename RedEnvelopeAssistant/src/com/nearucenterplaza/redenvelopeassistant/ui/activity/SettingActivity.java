@@ -1,25 +1,25 @@
 package com.nearucenterplaza.redenvelopeassistant.ui.activity;
 
-import com.nearucenterplaza.redenvelopeassistant.R;
-import com.nearucenterplaza.redenvelopeassistant.service.core.SettingHelper;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Switch;
+
+import com.nearucenterplaza.redenvelopeassistant.R;
+import com.nearucenterplaza.redenvelopeassistant.service.core.SettingHelper;
 
 public class SettingActivity extends ActionBarActivity{
 	RadioGroup mModeRg;
 	RadioGroup mLanguageRg;
 	RadioButton mAutoModeRb;
 	RadioButton mSafeModeRb;
+	
+	Switch mSoundSwitch;
 	
 	public static void actionTo(Context context){
 		Intent intent=new Intent(context, SettingActivity.class);
@@ -38,6 +38,7 @@ public class SettingActivity extends ActionBarActivity{
 		mLanguageRg=(RadioGroup)findViewById(R.id.settings_language_rg);
 		mAutoModeRb = (RadioButton) findViewById(R.id.settings_re_auto_mode_rb);
 		mSafeModeRb=(RadioButton)findViewById(R.id.settings_re_safe_mode_rb);
+		mSoundSwitch = (Switch)findViewById(R.id.settings_sound_play);
 
 		// set listeners
 		mModeRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -76,10 +77,18 @@ public class SettingActivity extends ActionBarActivity{
 			}
 		});
 		
+		mSoundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				SettingHelper.setRESound(isChecked);
+			}
+		});
+		
 		// set values
 		setTitle(getString(R.string.action_settings));
 		mAutoModeRb.setChecked(SettingHelper.getREAutoMode());
 		mSafeModeRb.setChecked(SettingHelper.getRESafeMode());
+		mSoundSwitch.setChecked(SettingHelper.isRESound());
 	}
 
 }
